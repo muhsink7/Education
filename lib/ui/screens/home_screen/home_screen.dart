@@ -29,43 +29,47 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: Column(
+      body: Stack(
         children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical:20.0),
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(50),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    spreadRadius: 1.5,
-                    blurRadius: 3,
-                    offset: Offset(1, 1),
-                  )
-                ]
-              ),
-              child: TabBar(
-                  unselectedLabelColor: Colors.black,
-                  indicator: BoxDecoration(
+          Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical:20.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
                     borderRadius: BorderRadius.circular(50),
-                    color: Color(0xff092136),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.5),
+                        spreadRadius: 1.5,
+                        blurRadius: 3,
+                        offset: Offset(1, 1),
+                      )
+                    ]
                   ),
-                  tabs: [
-                    Tab(
-                      text: 'Problem',
-                    ),
-                    Tab(
-                      text: 'Code',
-                    ),
-                    Tab(
-                      text: 'Theory',
-                    ),
-                  ]),
-            ),
-          ),
+                  child: TabBar(
+                      unselectedLabelColor: Colors.black,
+                      indicator: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        color: Color(0xff092136),
+                      ),
+                      tabs: [
+                        Tab(
+                          text: 'Problem',
+                        ),
+                        Tab(
+                          text: 'Code',
+                        ),
+                        Tab(
+                          text: 'Theory',
+                        ),
+                      ]),
+                ),
+              ),
 
+            ],
+          ),
         ],
       ),
     );
