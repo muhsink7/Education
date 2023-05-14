@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "891894306274",
+    "project_id": "studai-68389",
+    "storage_bucket": "studai-68389.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:891894306274:android:6d24857aa62044e94d15bb",
+        "android_client_info": {
+          "package_name": "com.example.education"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "891894306274-vgmkve6mgsfdsqcovunaeuu13a4kd5i7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.education",
+            "certificate_hash": "cdeb57df96eddf33062ba76f0a985e810b3403d5"
+          }
+        },
+        {
+          "client_id": "891894306274-80hs313b80h5jbjotrkp9takud5kclsh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWEDTm2kxOYr8RRu5GVv2s74hFZl2auF8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "891894306274-80hs313b80h5jbjotrkp9takud5kclsh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
