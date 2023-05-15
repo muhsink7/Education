@@ -6,46 +6,48 @@ import 'package:google_sign_in/google_sign_in.dart';
 import '../../../router.dart';
 
 class LoginController extends GetxController {
-  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  // final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   late Rx<User?> firebaseUser;
 
+  bool isLoading = false;
+
   late Rx<GoogleSignInAccount?> googleSignInAccount;
+
 
   @override
   void onReady() {
     super.onReady();
-    //   // auth is coming from the constants.dart file but it is basically FirebaseAuth.instance.
-    //   // Since we have to use that many times I just made a constant file and declared there
-    //
+
     firebaseUser = Rx<User?>(auth.currentUser);
     googleSignInAccount = Rx<GoogleSignInAccount?>(googleSign.currentUser);
 
 
-    // firebaseUser.bindStream(auth.userChanges());
-    // ever(firebaseUser, _setInitialScreen);
+    firebaseUser.bindStream(auth.userChanges());
+    ever(firebaseUser, _setInitialScreen);
 
     googleSignInAccount.bindStream(googleSign.onCurrentUserChanged);
     ever(googleSignInAccount, _setInitialScreenGoogle);
   }
 
 
-  // _setInitialScreen(User? user) {
-  //   if (user == null) {
-  //     // if the user is not found then the user is navigated to the Register Screen
-  //     Get.offAllNamed(RoutePaths.loginScreen);
-  //   } else {
-  //     // if the user exists and logged in the the user is navigated to the Home Screen
-  //     Get.offAllNamed(RoutePaths.homeScreen);
-  //   }
-  // }
+  _setInitialScreen(User? user) {
+    if (user == null) {
+      print("-----------Login screen----------");
+      Get.toNamed(RoutePaths.loginScreen);
+    } else {
+      toggleLoading();
+      Get.offAllNamed(RoutePaths.homeScreen);
+    }
+  }
 
 
   _setInitialScreenGoogle(GoogleSignInAccount? googleSignInAccount) {
     print(googleSignInAccount);
     if (googleSignInAccount == null) {
-      // if the user is not found then the user is navigated to the Register Screen
-      Get.offAllNamed(RoutePaths.loginScreen);    } else {
-      // if the user exists and logged in the the user is navigated to the Home Screen
+      print("*************google screen***********");
+      toggleLoading();
+      Get.toNamed(RoutePaths.loginScreen);    } else {
+      toggleLoading();
       Get.offAllNamed(RoutePaths.homeScreen);    }
   }
 
@@ -91,5 +93,10 @@ class LoginController extends GetxController {
 
   void signOut() async {
     await auth.signOut();
+  }
+
+  void toggleLoading() {
+    isLoading = !isLoading;
+    update();
   }
 }

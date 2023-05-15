@@ -2,16 +2,17 @@ import 'package:country_picker/country_picker.dart';
 import 'package:education/constants/button_constants.dart';
 import 'package:education/constants/color_constants.dart';
 import 'package:education/constants/image_constants.dart';
+import 'package:education/ui/screens/otp_screen/otp_controller.dart';
 import 'package:education/ui/screens/register_screen/register_controller.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../router.dart';
 
 class RegisterScreen extends GetWidget<RegisterController> {
-  final RegisterController _registerController = Get.put(RegisterController());
+  final OtpController _otpController = Get.put(OtpController());
+
+   RegisterScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,13 +31,13 @@ class RegisterScreen extends GetWidget<RegisterController> {
                       width: 300.0,
                       height: 300.0,
                       padding: const EdgeInsets.all(30.0),
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         shape: BoxShape.circle,
                         color: primaryColor,
                       ),
                       child: Image.asset(Images.splash),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 50.0,
                     ),
                     Text(
@@ -131,7 +132,8 @@ class RegisterScreen extends GetWidget<RegisterController> {
                       child: CustomButton(
                           name: "Send OTP",
                           onPressed: () {
-                            _registerController.sendOtp();
+                            _otpController.sendOtp();
+                            // Get.toNamed(RoutePaths.otpScreen);
                           }),
                     ),
                     const SizedBox(
@@ -145,7 +147,5 @@ class RegisterScreen extends GetWidget<RegisterController> {
         );
       }),
     );
-
-
   }
 }

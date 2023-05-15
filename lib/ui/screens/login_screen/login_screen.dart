@@ -19,22 +19,25 @@ class LoginScreen extends GetWidget<LoginController> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset(
-                    Images.splash,
+                  Hero(
+                    tag: 'logo',
+                    child: Image.asset(
+                      Images.splash,
+                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(50.0),
                     child: Text(
                       'Sign in with',
                       style: GoogleFonts.manrope(
-                        textStyle: TextStyle(
+                        textStyle: const TextStyle(
                             color: Colors.white,
                             fontSize: 20,
                             ),
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Row(
@@ -46,12 +49,11 @@ class LoginScreen extends GetWidget<LoginController> {
                             children: [
                               InkWell(
                                 onTap: (){
+                                  controller.toggleLoading();
                                   Get.toNamed(RoutePaths.registerScreen);
                                 },
                                 child: Container(
                                   decoration: BoxDecoration(
-                                    // image: DecorationImage(
-                                    //   image:AssetImage(Images.google),),
                                     borderRadius: BorderRadius.circular(50),
                                     color: Colors.transparent,
                                     border: Border.all(
@@ -76,7 +78,7 @@ class LoginScreen extends GetWidget<LoginController> {
                             child: Text(
                               'Phone number',
                               style: GoogleFonts.manrope(
-                                textStyle: TextStyle(
+                                textStyle: const TextStyle(
                                   color: Colors.white,
                                 ),
                               ),
@@ -84,7 +86,7 @@ class LoginScreen extends GetWidget<LoginController> {
                           )
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 30,
                       ),
                       Column(
@@ -97,8 +99,6 @@ class LoginScreen extends GetWidget<LoginController> {
                                 },
                                 child: Container(
                                   decoration: BoxDecoration(
-                                    // image: DecorationImage(
-                                    //   image:AssetImage(Images.google),),
                                     borderRadius: BorderRadius.circular(50),
                                     color: Colors.transparent,
                                     border: Border.all(
@@ -123,7 +123,7 @@ class LoginScreen extends GetWidget<LoginController> {
                             child: Text(
                               'Google',
                               style: GoogleFonts.manrope(
-                                textStyle: TextStyle(
+                                textStyle: const TextStyle(
                                   color: Colors.white,
                                 ),
                               ),
