@@ -11,8 +11,6 @@ import '../home_screen/home_screen.dart';
 import '../login_screen/login_screen.dart';
 
 class RegisterController extends GetxController {
-
-
   Country selectedCountry = Country(
       phoneCode: "91",
       countryCode: "IN",
@@ -35,22 +33,14 @@ class RegisterController extends GetxController {
 
   final GoogleSignIn googleSign = GoogleSignIn();
 
-
-  // This is the state variable that will store the user's phone number.
   String phoneNumber = '';
 
-  // This is the state variable that will store the user's OTP code.
   String _otpCode = '';
 
-  // This is the state variable that will store the user's authentication status.
   bool _isAuthenticated = false;
 
-
-
-  // This getter will return the user's OTP code.
   String get otpCode => _otpCode;
 
-  // This getter will return the user's authentication status.
   bool get isAuthenticated => _isAuthenticated;
 
   @override
@@ -59,15 +49,16 @@ class RegisterController extends GetxController {
     updateSelectedCountry(country: null);
     update();
   }
+
   void updateSelectedCountry({Country? country}) {
     if (country != null) {
       selectedCountry = country;
       update();
     }
   }
-  final FirebaseAuth firebaseAuth = FirebaseAuth. instance;
-  RegisterController() {
-  }
+
+  final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+  RegisterController() {}
 
   Future<void> sendOtp() async {
     try {
@@ -101,69 +92,4 @@ class RegisterController extends GetxController {
       print(e);
     }
   }
-
-  void _setInitialScreen(User? user) {
-    if (user == null) {
-      // if the user is not found then the user is navigated to the Register Screen
-      Get.offAllNamed(RoutePaths.loginScreen);
-    } else {
-      // if the user exists and logged in, navigate to the Home Screen
-      Get.offAllNamed(RoutePaths.homeScreen);
-    }
-  }
-
-  void _setInitialScreenGoogle(GoogleSignInAccount? googleSignInAccount) {
-    print(googleSignInAccount);
-    if (googleSignInAccount == null) {
-      // if the user is not found then the user is navigated to the Register Screen
-      Get.offAllNamed(RoutePaths.loginScreen);
-    } else {
-      // if the user exists and logged in, navigate to the Home Screen
-      Get.offAllNamed(RoutePaths.homeScreen);
-    }
-  }
-  void signInWithGoogle() async {
-    try {
-      GoogleSignInAccount? googleSignInAccount = await googleSign.signIn();
-
-      if (googleSignInAccount != null) {
-        GoogleSignInAuthentication googleSignInAuthentication =
-        await googleSignInAccount.authentication;
-
-        AuthCredential credential = GoogleAuthProvider.credential(
-          accessToken: googleSignInAuthentication.accessToken,
-          idToken: googleSignInAuthentication.idToken,
-        );
-
-        await auth
-            .signInWithCredential(credential)
-            .catchError((onErr) => print(onErr));
-      }
-    } catch (e) {
-      Get.snackbar(
-        "Error",
-        e.toString(),
-        snackPosition: SnackPosition.BOTTOM,
-      );
-      print(e.toString());
-    }
-  }
-
-  void register(String email, password) async {
-    try {
-      await auth.createUserWithEmailAndPassword(
-          email: email, password: password);
-    } catch (firebaseAuthException) {}
-  }
-
-  void login(String email, password) async {
-    try {
-      await auth.signInWithEmailAndPassword(email: email, password: password);
-    } catch (firebaseAuthException) {}
-  }
-
-  void signOut() async {
-    await auth.signOut();
-  }
-
-  }
+}

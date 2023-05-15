@@ -145,5 +145,7 @@ class RegisterScreen extends GetWidget<RegisterController> {
         );
       }),
     );
+
+
   }
 }
